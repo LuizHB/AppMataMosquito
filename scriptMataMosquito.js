@@ -1,6 +1,7 @@
 var altura = 0
 var largura = 0
 var vidas = 1
+var tempo = 5
 
 //função para verificar o tamanho da tela para criar as posições randomicas das imagens
 
@@ -10,6 +11,20 @@ function ajustaTamanhoTela() {
 }
 
 ajustaTamanhoTela()
+
+//criando cronometro
+
+var cronometro = setInterval(function(){
+	tempo -=1
+	if (tempo < 0) {
+		clearInterval(cronometro)
+		clearInterval(criaMosquito)
+	//	window.location.href = 'youWin.html'
+	}else{
+	document.getElementById('cronometro').innerHTML = tempo
+	}
+}, 1000)
+
 
 //criando posição randomica
 
@@ -143,7 +158,7 @@ function rotacaoRandom(){
 
 //determinar o ciclo de tempo para os elementos mosquitos
 
-setInterval(function(){
+var criaMosquito = setInterval(function(){
 	posRandom()
 }, 2000)
 

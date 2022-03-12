@@ -1,6 +1,6 @@
 /* Estrutura do site  */
 
-body{
+body#index{
 	background-image: url('img/bg.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
