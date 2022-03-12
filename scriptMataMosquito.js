@@ -10,6 +10,21 @@ function ajustaTamanhoTela() {
 
 ajustaTamanhoTela()
 
+//criando posição randomica
+
+function posRandom(){
+
+//remover o mosquito anterior (caso exista)
+if (document.getElementById('mosquito1')) {
+	document.getElementById('mosquito1').remove()
+}
+if (document.getElementById('mosquito2')) {
+	document.getElementById('mosquito2').remove()
+}
+if (document.getElementById('mosquito3')) {
+	document.getElementById('mosquito3').remove()
+}
+
 //Math.floor para arredondar o valor da posição para inteiro
 
 var posX = Math.floor(Math.random() * largura) -90
@@ -39,6 +54,11 @@ var mosquito3 =document.createElement('img')
 mosquito1.src = 'img/mosquito.png'
 mosquito2.src = 'img/mosquito2.png'
 mosquito3.src = 'img/mosquito3.png'
+
+mosquito1.id = 'mosquito1'
+mosquito2.id = 'mosquito2'
+mosquito3.id = 'mosquito3'
+
 //acessando a classe da imagem
 mosquito1.className = tamanhoRandom() + ' ' + ladoRandom()
 mosquito2.className = tamanhoRandom() + ' ' + ladoRandom()
@@ -60,6 +80,8 @@ mosquito3.style.position = 'absolute'
 document.body.appendChild(mosquito1)
 document.body.appendChild(mosquito2)
 document.body.appendChild(mosquito3)
+
+}
 
 //criando tamanho aleatório
 function tamanhoRandom(){
@@ -104,3 +126,10 @@ function rotacaoRandom(){
 			return 'rotacaoD'
 	}
 }
+
+//determinar o ciclo de tempo para os elementos mosquitos
+
+setInterval(function(){
+	posRandom()
+}, 1000)
+
