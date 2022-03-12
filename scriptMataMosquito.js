@@ -1,5 +1,6 @@
 var altura = 0
 var largura = 0
+var vidas = 1
 
 //função para verificar o tamanho da tela para criar as posições randomicas das imagens
 
@@ -14,72 +15,85 @@ ajustaTamanhoTela()
 
 function posRandom(){
 
-//remover o mosquito anterior (caso exista)
-if (document.getElementById('mosquito1')) {
-	document.getElementById('mosquito1').remove()
-}
-if (document.getElementById('mosquito2')) {
-	document.getElementById('mosquito2').remove()
-}
-if (document.getElementById('mosquito3')) {
-	document.getElementById('mosquito3').remove()
-}
+	//remover o mosquito anterior (caso exista)
+	if (document.getElementById('mosquito1')) {
+		document.getElementById('mosquito1').remove()
 
-//Math.floor para arredondar o valor da posição para inteiro
+		if(vidas > 3){
+			window.location.href = 'gameOver.html'
+		}else{
+			document.getElementById('v' + vidas).src =	'img/coracao_vazio.png'
+			vidas++
+		}
+	}
+	
 
-var posX = Math.floor(Math.random() * largura) -90
-var posY = Math.floor(Math.random() * altura) -90
-var posX1 = Math.floor(Math.random() * largura) -90
-var posY1 = Math.floor(Math.random() * altura) -90
-var posX2 = Math.floor(Math.random() * largura) -90
-var posY2 = Math.floor(Math.random() * altura) -90
+	//Math.floor para arredondar o valor da posição para inteiro
 
-//retirando 90 px para não sair do limite da página
+	var posX = Math.floor(Math.random() * largura) -90
+	var posY = Math.floor(Math.random() * altura) -90
+	var posX1 = Math.floor(Math.random() * largura) -90
+	var posY1 = Math.floor(Math.random() * altura) -90
+	var posX2 = Math.floor(Math.random() * largura) -90
+	var posY2 = Math.floor(Math.random() * altura) -90
 
-//operador ternário para não possuir posição 0 e sumir da página
+	//retirando 90 px para não sair do limite da página
 
-posX = posX <0 ? 0 : posX
-posY = posY <0 ? 0 : posY
-posX1 = posX1 <0 ? 0 : posX1
-posY1 = posY1 <0 ? 0 : posY1
-posX2 = posX2 <0 ? 0 : posX2
-posY2 = posY2 <0 ? 0 : posY2
+	//operador ternário para não possuir posição 0 e sumir da página
 
-//criando elemento html
+	posX = posX <0 ? 0 : posX
+	posY = posY <0 ? 0 : posY
+//	posX1 = posX1 <0 ? 0 : posX1
+//	posY1 = posY1 <0 ? 0 : posY1
+//	posX2 = posX2 <0 ? 0 : posX2
+//	posY2 = posY2 <0 ? 0 : posY2
 
-var mosquito1 =document.createElement('img')
-var mosquito2 =document.createElement('img')
-var mosquito3 =document.createElement('img')
+	//criando elemento html
 
-mosquito1.src = 'img/mosquito.png'
-mosquito2.src = 'img/mosquito2.png'
-mosquito3.src = 'img/mosquito3.png'
+	var mosquito1 =document.createElement('img')
+//	var mosquito2 =document.createElement('img')
+//	var mosquito3 =document.createElement('img')
 
-mosquito1.id = 'mosquito1'
-mosquito2.id = 'mosquito2'
-mosquito3.id = 'mosquito3'
+	mosquito1.src = 'img/mosquito.png'
+//	mosquito2.src = 'img/mosquito2.png'
+//	mosquito3.src = 'img/mosquito3.png'
 
-//acessando a classe da imagem
-mosquito1.className = tamanhoRandom() + ' ' + ladoRandom()
-mosquito2.className = tamanhoRandom() + ' ' + ladoRandom()
-mosquito3.className = tamanhoRandom() + ' ' + ladoRandom() + ' ' + rotacaoRandom()
-//acessando a posição
-mosquito1.style.left = posX + 'px'
-mosquito1.style.top = posY + 'px'
-mosquito1.style.position = 'absolute'
+	mosquito1.id = 'mosquito1'
+//	mosquito2.id = 'mosquito2'
+//	mosquito3.id = 'mosquito3'
 
-mosquito2.style.left = posX1 + 'px'
-mosquito2.style.top = posY1 + 'px'
-mosquito2.style.position = 'absolute'
+	//acessando a classe da imagem
+	mosquito1.className = tamanhoRandom() + ' ' + ladoRandom() + ' ' + rotacaoRandom()
+//	mosquito2.className = tamanhoRandom() + ' ' + ladoRandom()
+//	mosquito3.className = tamanhoRandom() + ' ' + ladoRandom() + ' ' + rotacaoRandom()
+	//acessando a posição
+	mosquito1.style.left = posX + 'px'
+	mosquito1.style.top = posY + 'px'
+	mosquito1.style.position = 'absolute'
 
-mosquito3.style.left = posX2 + 'px'
-mosquito3.style.top = posY2 + 'px'
-mosquito3.style.position = 'absolute'
+//	mosquito2.style.left = posX1 + 'px'
+//	mosquito2.style.top = posY1 + 'px'
+//	mosquito2.style.position = 'absolute'
 
-//adicionando elementos ao body
-document.body.appendChild(mosquito1)
-document.body.appendChild(mosquito2)
-document.body.appendChild(mosquito3)
+//	mosquito3.style.left = posX2 + 'px'
+//	mosquito3.style.top = posY2 + 'px'
+//	mosquito3.style.position = 'absolute'
+
+	//remoção de elemento por clique
+	mosquito1.onclick = function(){
+		this.remove()
+	}
+//	mosquito2.onclick = function(){
+//		this.remove()
+//	}
+//	mosquito3.onclick = function(){
+//		this.remove()
+//	}
+
+	//adicionando elementos ao body
+	document.body.appendChild(mosquito1)
+//	document.body.appendChild(mosquito2)
+//	document.body.appendChild(mosquito3)
 
 }
 
@@ -131,5 +145,5 @@ function rotacaoRandom(){
 
 setInterval(function(){
 	posRandom()
-}, 1000)
+}, 2000)
 

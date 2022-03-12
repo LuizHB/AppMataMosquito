@@ -1,3 +1,33 @@
+/* Estrutura do site  */
+
+body{
+	background-image: url('img/bg.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.painel{
+	position: absolute;
+	width: 200px;
+	left: 0px;
+	padding: 10px;
+	bottom: 0px;
+	border-top: 1px solid #fff;
+	background-color: #fff;
+	opacity: 0.7;
+}
+
+.ptsVida{
+	float: left;
+}
+
+.cronometro{
+	float: left;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+/*  classes a serem importadas pelo JS   */
+
 .mosquito1{
 	width: 50px;
 	height: 50px;
@@ -22,14 +52,14 @@
 }
 
 .rotacaoA {
-	transform: rotate(45deg);
+	transform: rotate(50deg);
 }
 
 .rotacaoB {
 	transform: scaleY(1);
 }
 .rotacaoC {
-	transform: scaleY(-1);
+	transform: rotate(25deg);
 }
 .rotacaoD {
 	transform: rotate(-45deg);
