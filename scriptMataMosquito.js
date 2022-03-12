@@ -19,7 +19,7 @@ var cronometro = setInterval(function(){
 	if (tempo < 0) {
 		clearInterval(cronometro)
 		clearInterval(criaMosquito)
-	//	window.location.href = 'youWin.html'
+		window.location.href = 'youWin.html'
 	}else{
 	document.getElementById('cronometro').innerHTML = tempo
 	}
