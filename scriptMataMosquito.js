@@ -2,22 +2,25 @@ var altura = 0
 var largura = 0
 
 //função para verificar o tamanho da tela para criar as posições randomicas das imagens
+
 function ajustaTamanhoTela() {
 	altura = window.innerHeight
 	largura = window.innerWidth
-	console.log(largura,altura)
 }
 
 ajustaTamanhoTela()
 
-//Math.floor para arredondar o valor da posição
+//Math.floor para arredondar o valor da posição para inteiro
+
 var posX = Math.floor(Math.random() * largura) -90
 var posY = Math.floor(Math.random() * altura) -90
 var posX1 = Math.floor(Math.random() * largura) -90
 var posY1 = Math.floor(Math.random() * altura) -90
 var posX2 = Math.floor(Math.random() * largura) -90
 var posY2 = Math.floor(Math.random() * altura) -90
+
 //retirando 90 px para não sair do limite da página
+
 //operador ternário para não possuir posição 0 e sumir da página
 
 posX = posX <0 ? 0 : posX
@@ -26,9 +29,6 @@ posX1 = posX1 <0 ? 0 : posX1
 posY1 = posY1 <0 ? 0 : posY1
 posX2 = posX2 <0 ? 0 : posX2
 posY2 = posY2 <0 ? 0 : posY2
-
-
-console.log(posX,posY)
 
 //criando elemento html
 
@@ -40,9 +40,9 @@ mosquito1.src = 'img/mosquito.png'
 mosquito2.src = 'img/mosquito2.png'
 mosquito3.src = 'img/mosquito3.png'
 //acessando a classe da imagem
-mosquito1.className = 'mosquito'
-mosquito2.className = 'mosquito'
-mosquito3.className = 'mosquito'
+mosquito1.className = tamanhoRandom() + ' ' + ladoRandom()
+mosquito2.className = tamanhoRandom() + ' ' + ladoRandom()
+mosquito3.className = tamanhoRandom() + ' ' + ladoRandom() + ' ' + rotacaoRandom()
 //acessando a posição
 mosquito1.style.left = posX + 'px'
 mosquito1.style.top = posY + 'px'
@@ -56,6 +56,51 @@ mosquito3.style.left = posX2 + 'px'
 mosquito3.style.top = posY2 + 'px'
 mosquito3.style.position = 'absolute'
 
+//adicionando elementos ao body
 document.body.appendChild(mosquito1)
 document.body.appendChild(mosquito2)
 document.body.appendChild(mosquito3)
+
+//criando tamanho aleatório
+function tamanhoRandom(){
+	var tamanho = Math.floor(Math.random()*3)
+
+	switch(tamanho){
+		case 0:
+			return 'mosquito1'
+		case 1:
+			return 'mosquito2'
+		case 2:
+			return 'mosquito3'
+	}
+}
+
+//criando lado aleatorio
+
+function ladoRandom(){
+	var lado = Math.floor(Math.random()*2)
+
+	switch(lado){
+		case 0:
+			return 'ladoA'
+		case 1:
+			return 'ladoB'
+	}
+}
+
+//função de rotação aleatoria
+
+function rotacaoRandom(){
+	var rotacao = Math.floor(Math.random()*4)
+
+	switch(rotacao){
+		case 0:
+			return 'rotacaoA'
+		case 1:
+			return 'rotacaoB'
+		case 2:
+			return 'rotacaoC'
+		case 3:
+			return 'rotacaoD'
+	}
+}
