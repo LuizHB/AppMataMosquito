@@ -2,10 +2,12 @@
 var altura = 0
 var largura = 0
 var vidas = 1
-var tempo = 25
+var tempo = 10
 var tempoDificuldade = 1500
+//método para as dificuldades
+
 var nivel = window.location.search
-nivel.replace('?','')
+nivel = nivel.replace('?','')
 
 //dificuldade do jogo
 if (nivel==='normal') {
@@ -16,7 +18,6 @@ if (nivel==='normal') {
 	tempoDificuldade = 700
 }
 
-
 //função para verificar o tamanho da tela para criar as posições randomicas das imagens
 
 function ajustaTamanhoTela() {
@@ -25,6 +26,19 @@ function ajustaTamanhoTela() {
 }
 
 ajustaTamanhoTela()
+
+//criando cronometro
+
+var cronometro = setInterval(function(){
+	tempo -=1
+	if (tempo < 0) {
+		clearInterval(cronometro)
+		clearInterval(criaMosquito)
+		window.location.href = 'youWin.html'
+	}else{
+	document.getElementById('cronometro').innerHTML = tempo
+	}
+}, 1000)
 
 //criando posição randomica
 
@@ -58,7 +72,7 @@ function posRandom(){
 	mosquito1.src = 'img/mosquito.png'
 	mosquito1.id = 'mosquito1'
 	//acessando a classe da imagem
-	mosquito1.className = tamanhoRandom() + ' ' + ladoRandom() + ' ' + rotacaoRandom()
+	mosquito1.className = tamanhoRandom() + ' ' + ladoRandom()
 	//acessando a posição
 	mosquito1.style.left = posX + 'px'
 	mosquito1.style.top = posY + 'px'
@@ -97,56 +111,6 @@ function ladoRandom(){
 		case 1:
 			return 'ladoB'
 	}
-}
-
-//função de rotação aleatoria
-
-function rotacaoRandom(){
-	var rotacao = Math.floor(Math.random()*4)
-
-	switch(rotacao){
-		case 0:
-			return 'rotacaoA'
-		case 1:
-			return 'rotacaoB'
-		case 2:
-			return 'rotacaoC'
-		case 3:
-			return 'rotacaoD'
-	}
-}
-
-//criando cronometro
-
-var cronometro = setInterval(function(){
-	tempo -=1
-	if (tempo < 0) {
-		clearInterval(cronometro)
-		clearInterval(criaMosquito)
-		window.location.href = 'youWin.html'
-	}else{
-	document.getElementById('cronometro').innerHTML = tempo
-	}
-}, 1000)
-
-//determinar o ciclo de tempo para os elementos mosquitos
-document.getElementById('cronometro').innerHTML = tempo
-
-var criaMosquito = setInterval(function(){
-	posRandom()
-}, tempoDificuldade)
-
-//método para as dificuldades
-
-function iniciarJogo(){
-	var nivel = document.getElementById('nivel').value
-
-	if (nivel === '') {
-		alert('Selecione uma dificuldade para iniciar o jogo')
-		return false
-	}
-
-	window.location.href = "appMataMosquito.html"
 }
 
 
@@ -189,3 +153,21 @@ function iniciarJogo(){
 
 //	document.body.appendChild(mosquito2)
 //	document.body.appendChild(mosquito3)
+
+
+//função de rotação aleatoria
+/*
+function rotacaoRandom(){
+	var rotacao = Math.floor(Math.random()*4)
+
+	switch(rotacao){
+		case 0:
+			return 'rotacaoA'
+		case 1:
+			return 'rotacaoB'
+		case 2:
+			return 'rotacaoC'
+		case 3:
+			return 'rotacaoD'
+	}
+}*/

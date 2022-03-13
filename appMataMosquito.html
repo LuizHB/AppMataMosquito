@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mata Mosquito V1.0</title>
 	<link rel="stylesheet" type="text/css" href="estilo.css">
-
+	<script src="scriptMataMosquito.js"></script>
 </head>
 <body onresize="ajustaTamanhoTela()">
 
@@ -21,6 +21,13 @@
 		</div>
 	</div>
 
-	<script src="scriptMataMosquito.js"></script>
+	<script>
+		//determinar o ciclo de tempo para os elementos mosquitos
+		document.getElementById('cronometro').innerHTML = tempo
+
+		var criaMosquito = setInterval(function(){
+			posRandom()
+		}, tempoDificuldade)
+	</script>
 </body>
 </html>
